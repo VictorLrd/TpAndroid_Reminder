@@ -35,4 +35,10 @@
     <preference name="loglevel" value="DEBUG" />
     <preference name="KeepRunning" value="true" />
     <preference name="AndroidLaunchMode" value="singleInstance" />
+    <feature name="LocalNotification">
+        <param name="android-package" value="de.appplant.cordova.plugin.localnotification.LocalNotification" />
+    </feature>
+    <feature name="Vibration">
+        <param name="android-package" value="org.apache.cordova.vibration.Vibration" />
+    </feature>
 </widget>

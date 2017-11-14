@@ -1,27 +1,33 @@
 {
-    "prepare_queue": {
-        "installed": [],
-        "uninstalled": []
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.ynov.b3.reminder"
     },
-    "config_munge": {
-        "files": {}
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.ynov.b3.reminder"
     },
-    "installed_plugins": {
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.ynov.b3.reminder"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.ynov.b3.reminder"
-        },
-        "cordova-plugin-nativestorage": {
-            "PACKAGE_NAME": "com.ynov.b3.reminder"
-        },
-        "cordova-plugin-badge": {
-            "PACKAGE_NAME": "com.ynov.b3.reminder"
-        },
-        "cordova-plugin-background-mode": {
-            "PACKAGE_NAME": "com.ynov.b3.reminder"
-        }
+    "cordova-plugin-nativestorage": {
+      "PACKAGE_NAME": "com.ynov.b3.reminder"
     },
-    "dependent_plugins": {}
+    "cordova-plugin-badge": {
+      "PACKAGE_NAME": "com.ynov.b3.reminder"
+    },
+    "cordova-plugin-background-mode": {
+      "PACKAGE_NAME": "com.ynov.b3.reminder"
+    },
+    "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "com.ynov.b3.reminder"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "com.ynov.b3.reminder"
+    }
+  },
+  "dependent_plugins": {}
 }
