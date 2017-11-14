@@ -12,6 +12,15 @@
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.ynov.b3.reminder"
+        },
+        "cordova-plugin-nativestorage": {
+            "PACKAGE_NAME": "com.ynov.b3.reminder"
+        },
+        "cordova-plugin-badge": {
+            "PACKAGE_NAME": "com.ynov.b3.reminder"
+        },
+        "cordova-plugin-background-mode": {
+            "PACKAGE_NAME": "com.ynov.b3.reminder"
         }
     },
     "dependent_plugins": {}
