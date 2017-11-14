@@ -1,0 +1,17 @@
+
+#Online , #Offline{
+  display: block;
+  border-radius: 50%;
+  width:20px;
+  height: 20px;
+}
+
+
+#Offline {
+    background-color: red;
+}
+
+#Online {
+    background-color: green;
+    display: none;
+}
