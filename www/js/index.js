@@ -22,9 +22,6 @@ var app = {
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function () {
-        app.receivedEvent('deviceready');
-    },
 
     start: function () {
         $("#cpt").html("OK!");
@@ -45,10 +42,17 @@ var app = {
     },
 
     onDeviceReady: function () {
+        app.receivedEvent('deviceready');
         var interval = 5000;
         console.log(window.cordova);
        
         //Mise en tache de fond de l'application.
+       /* cordova.plugins.notification.local.schedule({
+        title: 'Sync in progress',
+        text: 'Copied 2 of 10 files',
+        progressBar: { value: 20 }
+            });*/
+        
         window.cordova.plugins.backgroundMode.enable();
         
         setInterval(function () {
@@ -91,12 +95,12 @@ var app = {
 
 
     },
-    saveData: function () {
+    saveData: function (ref) {
         var data = document.getElementById("data_input").value;
         NativeStorage.set("dummy_ref_obj",
             data,
             function (result) {
-                alert("Saved Data : " + result);
+                console.log("Saved Data : " + result);
             },
             function (e) {
                 fail("Write Object Failed");
