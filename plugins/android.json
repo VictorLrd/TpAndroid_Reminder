@@ -22,9 +22,6 @@
     "cordova-plugin-background-mode": {
       "PACKAGE_NAME": "com.ynov.b3.reminder"
     },
-    "cordova-plugin-local-notification": {
-      "PACKAGE_NAME": "com.ynov.b3.reminder"
-    },
     "cordova-plugin-vibration": {
       "PACKAGE_NAME": "com.ynov.b3.reminder"
     }

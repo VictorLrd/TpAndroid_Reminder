@@ -29,6 +29,5 @@
     <plugin name="cordova-plugin-nativestorage" spec="^2.2.2" />
     <plugin name="cordova-plugin-badge" spec="^0.8.5" />
     <plugin name="cordova-plugin-background-mode" spec="^0.7.2" />
-    <plugin name="cordova-plugin-local-notification" spec="https://github.com/katzer/cordova-plugin-local-notifications.git" />
     <plugin name="cordova-plugin-vibration" spec="^2.1.6" />
 </widget>

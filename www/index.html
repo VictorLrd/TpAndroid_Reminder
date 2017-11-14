@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>Reminder</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-inverse bg-primary">
+            <div class="app">
+                <div id="Online">&nbsp;</div>
+                <div id="Offline">&nbsp;</div>
+            </div>
+            <h2>Reminder</h2>
+            <div id="clock">
+                <h2>
+                    <span id="hourClock">???</span>:<span id="minClock">???</span>
+                </h2>
+            </div>
+        </nav>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="hero">
+                    <h1 id="cpt">???</h1>
+                    <input type="date" name="anniversaire">
+                </div>
+            </div>
+        </div>
+
+        <button id="btn_New_Reminder" type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#ModalNewReminder">New Reminder</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="ModalNewReminder" tabindex="-1" role="dialog" aria-labelledby="ModalNewReminder" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalNewReminder">Create new reminder</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Input text
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+
+</html>

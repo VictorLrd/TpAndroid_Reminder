@@ -1,11 +1,11 @@
-
-#Online , #Offline{
-  display: block;
-  border-radius: 50%;
-  width:20px;
-  height: 20px;
+#Online,
+#Offline {
+/*    display: block;*/
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin: 0px;
 }
-
 
 #Offline {
     background-color: red;
@@ -14,4 +14,10 @@
 #Online {
     background-color: green;
     display: none;
+}
+
+#btn_New_Reminder {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }

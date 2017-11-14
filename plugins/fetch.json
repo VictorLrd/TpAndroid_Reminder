@@ -23,14 +23,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-local-notification": {
-    "source": {
-      "type": "registry",
-      "id": "https://github.com/katzer/cordova-plugin-local-notifications.git"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-badge": {
     "source": {
       "type": "registry",
@@ -51,6 +43,14 @@
     "source": {
       "type": "registry",
       "id": "cordova-plugin-vibration"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-local-notification": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-local-notification"
     },
     "is_top_level": true,
     "variables": {}
