@@ -1,0 +1,15 @@
+#offline, #online {
+     border-radius: 50%;    
+    width: 20px;
+    height: 20px;   
+}
+
+#offline {
+    background-color: red;
+}
+
+#online {
+    background-color: #5bb45b;
+    display: none;
+}
+    
