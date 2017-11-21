@@ -47,11 +47,11 @@ var app = {
         console.log(window.cordova);
        
         //Mise en tache de fond de l'application.
-cordova.plugins.notification.local.schedule({
-    title: 'Sync in progress',
-    text: 'Copied 2 of 10 files',
-    progressBar: { value: 20 }
-});
+       /* cordova.plugins.notification.local.schedule({
+        title: 'Sync in progress',
+        text: 'Copied 2 of 10 files',
+        progressBar: { value: 20 }
+            });*/
         
         window.cordova.plugins.backgroundMode.enable();
         
