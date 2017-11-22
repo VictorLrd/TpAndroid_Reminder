@@ -1,6 +1,7 @@
 var app = {
 
     cpt: 0,
+    alarmOn: false,
     // Application Constructor
     initialize: function () {
         this.bindEvents();
@@ -34,27 +35,48 @@ var app = {
     updateDom: function () {
         $("#cpt").html(this.cpt);
     },
+    
+    formatDigit: function (int){
+            if(int < 10){
+                return ('0'+int);
+            }
+            return int;         
+    },
 
     updateClock: function () {
         var d = new Date();
-        $("#hourClock").html(d.getHours());
-        $("#minClock").html(d.getMinutes());
+        $("#hourClock").html(app.formatDigit(d.getUTCHours()));
+        $("#minClock").html(app.formatDigit(d.getMinutes()));
+        $("#secClock").html(app.formatDigit(d.getUTCSeconds()));
+
     },
+
+    checkAlarm: function () {
+        var heureAlarm = $("#alarmTime").html();
+        var heureActuelle = $("#hourClock").html() + ':' + $("#minClock").html();
+        console.log(heureAlarm + '     ' + heureActuelle);
+        if (heureAlarm == heureActuelle && !app.alarmOn) {
+            
+            return true;
+        }
+        return false;
+    },
+
 
     onDeviceReady: function () {
         app.receivedEvent('deviceready');
         var interval = 5000;
         console.log(window.cordova);
-       
+
         //Mise en tache de fond de l'application.
-       /* cordova.plugins.notification.local.schedule({
-        title: 'Sync in progress',
-        text: 'Copied 2 of 10 files',
-        progressBar: { value: 20 }
-            });*/
-        
+        /* cordova.plugins.notification.local.schedule({
+         title: 'Sync in progress',
+         text: 'Copied 2 of 10 files',
+         progressBar: { value: 20 }
+             });*/
+
         window.cordova.plugins.backgroundMode.enable();
-        
+
         setInterval(function () {
             if (cordova.plugins.backgroundMode.isActive()) {
                 console.log("Le mode background est actif !");
@@ -64,16 +86,26 @@ var app = {
                 app.updateClock();
                 interval = 5000;
             }
-            console.log("Update since : "+ interval +" ms")
+            console.log("Update since : " + interval + " ms   "+ app.alarmOn);
+            if (app.checkAlarm()) {
+                app.alarmOn = true;
+                $("#ModalAlarm").modal();
+            }
+            if (app.alarmOn) {
+                navigator.vibrate(1000);
+            }
+
         }, interval);
 
         cordova.plugins.backgroundMode.overrideBackButton();
-        cordova.plugins.backgroundMode.excludeFromTaskList();
-
+        //cordova.plugins.backgroundMode.excludeFromTaskList();
+        
+        $("#btn_stop").click(function(){
+            app.alarmOn = false;
+        });
 
 
         //console.log(device.cordova);
-        this.setDeviceReady();
         this.start();
 
     },
@@ -93,6 +125,11 @@ var app = {
         document.getElementById("btn_load").onclick = app.loadData;
         document.getElementById("btn_save").onclick = app.saveData;
 
+        var alarmeTime;
+        app.loadData;
+        console.log(alarmeTime);
+
+
 
     },
     saveData: function (ref) {
@@ -100,7 +137,8 @@ var app = {
         NativeStorage.set("dummy_ref_obj",
             data,
             function (result) {
-                console.log("Saved Data : " + result);
+                alert("Saved Data : " + result);
+                $("#alarmTime").html(app.loadData);
             },
             function (e) {
                 fail("Write Object Failed");
@@ -109,12 +147,14 @@ var app = {
     loadData: function () {
         NativeStorage.getString("dummy_ref_obj",
             function (result) {
-                alert("Current Stored Value was: " + result);
+                $("#alarmTime").html(result);
             },
             function (e) {
                 fail("Read Object Failed");
             });
     }
 };
+
+
 
 app.initialize();

@@ -21,26 +21,45 @@
                 <div id="Offline">&nbsp;</div>
             </div>
             <h2>Reminder</h2>
+            <!--
             <div id="clock">
                 <h2>
                     <span id="hourClock">???</span>:<span id="minClock">???</span>
                 </h2>
             </div>
+-->
         </nav>
+
+        <!--        <hr class="my-4">-->
+        <div class="container">
+
+            <p id="date"></p>
+            <div id="clock">
+                <p class="unit" id="hourClock">??</p>
+                <p class="unit" id="minClock">??</p>
+                <p class="unit" id="secClock">??</p>
+            </div>
+        </div>
+        <hr class="my-4">
 
         <div class="row">
             <div class="col-12">
                 <div class="hero">
-                    <h1 id="cpt">???</h1>
-                     <div id="deviceready" class="blink">
-                        <p class="event listening">Connecting to Device</p>
-                        <p class="event received">Device is Ready</p>
+                    <h1 id="cpt">Vos alarmes</h1>
+                    <div id="deviceready" class="blink">
+                        <p class="event listening"></p>
+                        <p class="event received"></p>
                     </div>
                     <div>
-                        <input type="time" id="data_input"><button id="btn_save">SAVE</button><br>
+                        <p id="alarmTime">??</p>
+                    </div>
+<!--
+                    <div>
+                        <input type="time" id="data_input"><br><button id="btn_save">SAVE</button>
                         <button id="btn_load">LOAD</button><br>
                     </div>
-                                
+-->
+
                 </div>
             </div>
         </div>
@@ -58,15 +77,37 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        Input text
+                        Nouvelle alarme
+                        <div>
+                            <input type="time" id="data_input"><br>
+                            <button id="btn_load">LOAD</button><br>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" id="btn_save" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="ModalAlarm" tabindex="-1" role="dialog" aria-labelledby="ModalAlarm" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalAlarm">Disable Alarm</h5>
+                    </div>
+                    <div class="modal-body">
+                        Sélection
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btn_stop" class="btn btn-secondary" data-dismiss="modal">Arrêt</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
