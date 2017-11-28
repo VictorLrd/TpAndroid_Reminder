@@ -80,6 +80,9 @@ var app = {
                     $("#ModalAlarm").modal();
                 }
                 app.TimeOut();
+            }else{
+                app.interval=60000;
+                app.alarmOff=true;
             }
         
     },
@@ -117,12 +120,12 @@ var app = {
         app.checkBackGroundMode();
         
         $("#btn_stop").click(function(){
-            app.alarmOn = false;
+            app.alarmOff = false;
         });
 
 
         //console.log(device.cordova);
-        this.start();
+        //app.start();
 
     },
 

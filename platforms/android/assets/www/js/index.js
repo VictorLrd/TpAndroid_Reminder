@@ -3,6 +3,7 @@ var app = {
     cpt: 0,
     alarmOn: false,
     interval: 1000,
+    alarmOff: true,
     // Application Constructor
     initialize: function () {
         this.bindEvents();
@@ -73,11 +74,17 @@ var app = {
                 app.interval = 1000;
             }
             console.log("Update since : " + app.interval + " ms   "+ app.alarmOn);
-            if (app.checkAlarm()) {
-                app.alarmOn = true;
-                $("#ModalAlarm").modal();
+            if(app.alarmOff == true){
+                if (app.checkAlarm()) {
+                    app.alarmOn = true;
+                    $("#ModalAlarm").modal();
+                }
+                app.TimeOut();
+            }else{
+                app.interval=60000;
+                app.alarmOff=true;
             }
-        app.TimeOut();
+        
     },
         
     TimeOut : function(){
@@ -113,12 +120,12 @@ var app = {
         app.checkBackGroundMode();
         
         $("#btn_stop").click(function(){
-            app.alarmOn = false;
+            app.alarmOff = false;
         });
 
 
         //console.log(device.cordova);
-        this.start();
+        //app.start();
 
     },
 
