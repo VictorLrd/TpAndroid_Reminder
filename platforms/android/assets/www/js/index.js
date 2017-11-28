@@ -26,23 +26,13 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
 
-    start: function () {
-        $("#cpt").html("OK!");
-        setInterval(function () {
-            this.cpt++;
-            this.updateDom();
-        }.bind(this), 1000);
-    },
-
     updateDom: function () {
         $("#cpt").html(this.cpt);
     },
-    
-    formatDigit: function (int){
-            if(int < 10){
-                return ('0'+int);
-            }
-            return int;         
+
+    formatDigit: function (int) {
+        if (int < 10) return ('0' + int);
+        return int;
     },
 
     updateClock: function () {
@@ -55,78 +45,75 @@ var app = {
 
     checkAlarm: function () {
         var heureAlarm = $("#alarmTime").html();
-        var heureActuelle = $("#hourClock").html() + ':' + $("#minClock").html();
+        var d = new Date();
+        var heureActuelle = app.formatDigit(d.getHours()) + ':' + app.formatDigit(d.getMinutes());
         console.log(heureAlarm + '     ' + heureActuelle);
-        if (heureAlarm == heureActuelle && !app.alarmOn) {
-            
-            return true;
-        }
-        return false;
+        return (heureAlarm == heureActuelle)
     },
-        
-    checkBackGroundMode: function(){
+
+    checkBackGroundMode: function () {
         if (cordova.plugins.backgroundMode.isActive()) {
-                console.log("Le mode background est actif !");            
-                app.interval = 15000;
-            } else {
-                console.log("Le mode background est inactif !");
-                app.updateClock();
-                app.interval = 1000;
+            console.log("BackG = ON");
+            if (app.checkAlarm() && app.alarmOn) app.interval = 1000;
+            else app.interval = 15000;
+        } else {
+            console.log("BackG = OFF");
+            app.updateClock();
+            app.interval = 1000;
+        }
+        console.log("Update since : " + app.interval + " ms   ON = " + app.alarmOn + " / OFF = " + app.alarmOff);
+        if (app.alarmOff) {
+            if (app.checkAlarm()) {
+                app.alarmOn = true;
+                app.alarmOff = false;
+                $("#ModalAlarm").modal();
+
+                cordova.plugins.notification.local.schedule({
+                    title: 'My first notification',
+                    text: 'Thats pretty easy...',
+                    actions: [
+                        {
+                            id: 'btn_stop',
+                            title: 'Yes'
+                        },
+                        {
+                            id: 'No',
+                            title: 'No'
+                        }
+    ]
+                    // foreground: true
+                });
             }
-            console.log("Update since : " + app.interval + " ms   "+ app.alarmOn);
-            if(app.alarmOff == true){
-                if (app.checkAlarm()) {
-                    app.alarmOn = true;
-                    $("#ModalAlarm").modal();
-                }
-                app.TimeOut();
-            }else{
-                app.interval=60000;
-                app.alarmOff=true;
-            }
-        
+        }
+        app.TimeOut();
     },
-        
-    TimeOut : function(){
-         setTimeout(function () {
+
+    TimeOut: function () {
+        setTimeout(function () {
             app.checkBackGroundMode();
             if (app.alarmOn) {
                 navigator.vibrate(200);
             }
-
         }, app.interval);
     },
 
 
     onDeviceReady: function () {
         app.receivedEvent('deviceready');
-        
+
         console.log(window.cordova);
-
-        //Mise en tache de fond de l'application.
-        /* cordova.plugins.notification.local.schedule({
-         title: 'Sync in progress',
-         text: 'Copied 2 of 10 files',
-         progressBar: { value: 20 }
-             });*/
-
         window.cordova.plugins.backgroundMode.enable();
-
-       
-
         cordova.plugins.backgroundMode.overrideBackButton();
-        //cordova.plugins.backgroundMode.excludeFromTaskList();
-        
+        cordova.plugins.backgroundMode.excludeFromTaskList();
         app.checkBackGroundMode();
-        
-        $("#btn_stop").click(function(){
-            app.alarmOff = false;
+
+        $("#btn_stop").click(function () {
+            app.alarmOn = false;
+            console.log(new Date() + "Next TRUE = " + (60000 - (new Date().getSeconds() * 1000) + 1000));
+            setTimeout(function () {
+                app.alarmOff = true;
+            }, (60000 - (new Date().getSeconds() * 1000) + 1000))
         });
-
-
-        //console.log(device.cordova);
-        //app.start();
-
     },
 
     // Update DOM on a Received Event
@@ -140,17 +127,14 @@ var app = {
 
         console.log('Received Event: ' + id);
 
-
         document.getElementById("btn_load").onclick = app.loadData;
         document.getElementById("btn_save").onclick = app.saveData;
 
         var alarmeTime;
         app.loadData;
         console.log(alarmeTime);
-
-
-
     },
+
     saveData: function (ref) {
         var data = document.getElementById("data_input").value;
         NativeStorage.set("dummy_ref_obj",

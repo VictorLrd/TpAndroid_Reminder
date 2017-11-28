@@ -7,22 +7,25 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.ynov.b3.reminder"
-    },
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.ynov.b3.reminder"
-    },
-    "cordova-plugin-nativestorage": {
+    "cordova-plugin-background-mode": {
       "PACKAGE_NAME": "com.ynov.b3.reminder"
     },
     "cordova-plugin-badge": {
       "PACKAGE_NAME": "com.ynov.b3.reminder"
     },
-    "cordova-plugin-background-mode": {
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.ynov.b3.reminder"
+    },
+    "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "com.ynov.b3.reminder"
+    },
+    "cordova-plugin-nativestorage": {
       "PACKAGE_NAME": "com.ynov.b3.reminder"
     },
     "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "com.ynov.b3.reminder"
+    },
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.ynov.b3.reminder"
     }
   },
