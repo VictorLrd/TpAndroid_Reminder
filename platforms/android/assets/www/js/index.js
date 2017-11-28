@@ -2,6 +2,7 @@ var app = {
 
     cpt: 0,
     alarmOn: false,
+    interval: 1000,
     // Application Constructor
     initialize: function () {
         this.bindEvents();
@@ -45,9 +46,9 @@ var app = {
 
     updateClock: function () {
         var d = new Date();
-        $("#hourClock").html(app.formatDigit(d.getUTCHours()));
+        $("#hourClock").html(app.formatDigit(d.getHours()));
         $("#minClock").html(app.formatDigit(d.getMinutes()));
-        $("#secClock").html(app.formatDigit(d.getUTCSeconds()));
+        $("#secClock").html(app.formatDigit(d.getSeconds()));
 
     },
 
@@ -61,11 +62,38 @@ var app = {
         }
         return false;
     },
+        
+    checkBackGroundMode: function(){
+        if (cordova.plugins.backgroundMode.isActive()) {
+                console.log("Le mode background est actif !");            
+                app.interval = 15000;
+            } else {
+                console.log("Le mode background est inactif !");
+                app.updateClock();
+                app.interval = 1000;
+            }
+            console.log("Update since : " + app.interval + " ms   "+ app.alarmOn);
+            if (app.checkAlarm()) {
+                app.alarmOn = true;
+                $("#ModalAlarm").modal();
+            }
+        app.TimeOut();
+    },
+        
+    TimeOut : function(){
+         setTimeout(function () {
+            app.checkBackGroundMode();
+            if (app.alarmOn) {
+                navigator.vibrate(200);
+            }
+
+        }, app.interval);
+    },
 
 
     onDeviceReady: function () {
         app.receivedEvent('deviceready');
-        var interval = 5000;
+        
         console.log(window.cordova);
 
         //Mise en tache de fond de l'application.
@@ -77,28 +105,12 @@ var app = {
 
         window.cordova.plugins.backgroundMode.enable();
 
-        setInterval(function () {
-            if (cordova.plugins.backgroundMode.isActive()) {
-                console.log("Le mode background est actif !");
-                interval = 15000;
-            } else {
-                console.log("Le mode background est inactif !");
-                app.updateClock();
-                interval = 5000;
-            }
-            console.log("Update since : " + interval + " ms   "+ app.alarmOn);
-            if (app.checkAlarm()) {
-                app.alarmOn = true;
-                $("#ModalAlarm").modal();
-            }
-            if (app.alarmOn) {
-                navigator.vibrate(1000);
-            }
-
-        }, interval);
+       
 
         cordova.plugins.backgroundMode.overrideBackButton();
         //cordova.plugins.backgroundMode.excludeFromTaskList();
+        
+        app.checkBackGroundMode();
         
         $("#btn_stop").click(function(){
             app.alarmOn = false;
