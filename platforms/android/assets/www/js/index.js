@@ -4,8 +4,7 @@ var app = {
     alarmOn: false,
     interval: 1000,
     alarmOff: true,
-    jsonAlarm: { "nameALarm":"1", "timeAlarm": "12:30" },
-    
+    alarmLocal: [],
     // Application Constructor
     initialize: function () {
         this.bindEvents();
@@ -16,14 +15,10 @@ var app = {
             console.log("navigateur")
         }
     },
-    
+
     bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
-    
-//    updateDom: function () {
-//        $("#cpt").html(this.cpt);
-//    },
 
     formatDigit: function (int) {
         if (int < 10) return ('0' + int);
@@ -37,13 +32,41 @@ var app = {
         $("#secClock").html(app.formatDigit(d.getSeconds()));
     },
 
+    updateLocalAlarm: function () {
+        console.log("Maj alarm save");
+        alarm1 = $("#data_input0").html();
+        alarm2 = $("#data_input1").html();
+        alarm3 = $("#data_input2").html();
+        app.alarmLocal = [alarm1, alarm2, alarm3];
+        app.saveData();
+    },
+
+    updateAlarmDom: function () {
+        console.log("Maj alarm DOM");
+        $("#data_input1").html(app.alarmLocal[0]);
+        $("#data_input2").html(app.alarmLocal[1]);
+        $("#data_input3").html(app.alarmLocal[2]);
+    },
+
     checkAlarm: function () {
         var heureAlarm = $("#alarmTime").html();
         var d = new Date();
         var heureActuelle = app.formatDigit(d.getHours()) + ':' + app.formatDigit(d.getMinutes());
         console.log(heureAlarm + '     ' + heureActuelle);
+        for (i = 0; i < app.alarmLocal.size; i++) {
+            if (app.alarmLocal[i] == heureAlarm) {
+                return app.checkIfAlarmIsActivated(i);
+            }
+        };
+        return false;
+    },
 
-        return (heureAlarm == heureActuelle)
+    checkIfAlarmIsActivated: function (int) {
+        if ($("#checkAlarm" + int).attr('checked')) {
+            return true;
+        } else {
+            return false
+        }
     },
 
     checkBackGroundMode: function () {
@@ -77,19 +100,13 @@ var app = {
                         }
                     ]
                     // foreground: true
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
                 });
-                cordova.plugins.notification.local.schedule({
-                    text: "Single Notification",
-                    sound:'happy',
-                });
+                //                cordova.plugins.notification.local.schedule({
+                //                    text: "Single Notification",
+                //                    sound:'file://happy',
+                //                });
             }
         }
-=======
-                });//endOption
-            }//endif AlarmCheck
-        }//endif AlarmOff
         app.TimeOut();
     },
 
@@ -110,6 +127,8 @@ var app = {
         cordova.plugins.backgroundMode.overrideBackButton();
         cordova.plugins.backgroundMode.excludeFromTaskList();
         app.checkBackGroundMode();
+        app.loadData(); //recuperation des alarm Stocké
+        app.updateAlarmDom(); //Maj des alarm dans le DOM
 
         $("#btn_stop").click(function () {
             app.alarmOn = false;
@@ -118,6 +137,26 @@ var app = {
                 app.alarmOff = true;
             }, (60000 - (new Date().getSeconds() * 1000) + 1000))
         });
+        
+        $("#test").click(function () {
+        if (typeof Media == 'undefined')
+            return;
+        console.log("playStartupSound");
+        var media = new Media(cordova.file.applicationDirectory + 'www/sounds/pleur.mp3',
+            // success callback
+            function () {
+                console.log("Audio Success");
+            },
+            // error callback
+            function (err) {
+                alert("Audio Error: " +JSON.stringify(err) );
+            });
+        media.play();
+    });
+        
+        var media = new Media()
+
+        $(".alarm").change(app.updateLocalAlarm()); //Maj de la var sur modification des champ de cette classe 
     },
 
     // Update DOM on a Received Event
@@ -131,51 +170,23 @@ var app = {
 
         console.log('Received Event: ' + id);
 
-        document.getElementById("btn_load").onclick = app.loadData;
-        document.getElementById("btn_save").onclick = app.saveData;
+        //  document.getElementById("btn_load").onclick = app.loadData;
+        //  document.getElementById("btn_save").onclick = app.saveData;
 
-        var alarmeTime;
+        //    var alarmeTime;
         app.loadData;
-        console.log(alarmeTime);
+        
     },
 
     saveData: function (ref) {
-        var time = $("#data_input").value;
-        var text = $("#data_text").value;
-//        data = JSON.stringify(this.jsonAlarm);
-//        
-////        var alarms =
-////        {
-////            id:"12345678": 
-////            {
-////                "title":title,
-////                "date", ""
-////            },
-////            id:"987897": 
-////            {
-////                "title":title,
-////                "date", ""
-////            }
-////        };
-//
-//        var alarm =  {
-//                "title":text,
-//                "time":time
-//            };
-//        
-//        alarms["345678"] = alarm;
-//        
-//        for(alarm in alarms){
-//            var x= alarms[alarm];
-//        };
-//        
-//        obj = JSON.parse(data);
- 
-        NativeStorage.set("dummy_ref_obj",
-            data,
+
+        app.updateLocalAlarm(); // Maj de la var alarmLocal
+
+        NativeStorage.set("alarm", //save de var alarmLocal
+            app.alarmLocal,
             function (result) {
-                alert("Saved Data : " + result);
-                $("#alarmTime").html(app.loadData);
+                alert("Saved Data : " + app.alarmLocal);
+                //                $("#alarmTime").html(app.loadData);
             },
             function (e) {
                 fail("Write Object Failed");
@@ -183,9 +194,10 @@ var app = {
     },
 
     loadData: function () {
-        NativeStorage.getString("dummy_ref_obj",
+        NativeStorage.getString("alarm",
             function (result) {
-                $("#alarmTime").html(result);
+                app.alarmLocal = result; // Maj de la var alarmLocal
+                app.updateAlarmDom(); // Maj du DOM
             },
             function (e) {
                 fail("Read Object Failed");
