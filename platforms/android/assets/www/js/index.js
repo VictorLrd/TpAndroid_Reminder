@@ -4,6 +4,7 @@ var app = {
     alarmOn: false,
     interval: 1000,
     alarmOff: true,
+    jsonAlarm: { "nameALarm":"1", "timeAlarm": "12:30" },
     
     // Application Constructor
     initialize: function () {
@@ -20,9 +21,9 @@ var app = {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     
-    updateDom: function () {
-        $("#cpt").html(this.cpt);
-    },
+//    updateDom: function () {
+//        $("#cpt").html(this.cpt);
+//    },
 
     formatDigit: function (int) {
         if (int < 10) return ('0' + int);
@@ -34,7 +35,6 @@ var app = {
         $("#hourClock").html(app.formatDigit(d.getHours()));
         $("#minClock").html(app.formatDigit(d.getMinutes()));
         $("#secClock").html(app.formatDigit(d.getSeconds()));
-
     },
 
     checkAlarm: function () {
@@ -42,6 +42,7 @@ var app = {
         var d = new Date();
         var heureActuelle = app.formatDigit(d.getHours()) + ':' + app.formatDigit(d.getMinutes());
         console.log(heureAlarm + '     ' + heureActuelle);
+
         return (heureAlarm == heureActuelle)
     },
 
@@ -83,22 +84,12 @@ var app = {
                     text: "Single Notification",
                     sound:'happy',
                 });
-                cordova.plugins.notification.local.schedule({
-                    text: "Single Notification",
-                    sound:'happy',
-                });
             }
         }
 =======
                 });//endOption
             }//endif AlarmCheck
         }//endif AlarmOff
->>>>>>> Stashed changes
-=======
-                });//endOption
-            }//endif AlarmCheck
-        }//endif AlarmOff
->>>>>>> Stashed changes
         app.TimeOut();
     },
 
@@ -149,7 +140,37 @@ var app = {
     },
 
     saveData: function (ref) {
-        var data = document.getElementById("data_input").value;
+        var time = $("#data_input").value;
+        var text = $("#data_text").value;
+//        data = JSON.stringify(this.jsonAlarm);
+//        
+////        var alarms =
+////        {
+////            id:"12345678": 
+////            {
+////                "title":title,
+////                "date", ""
+////            },
+////            id:"987897": 
+////            {
+////                "title":title,
+////                "date", ""
+////            }
+////        };
+//
+//        var alarm =  {
+//                "title":text,
+//                "time":time
+//            };
+//        
+//        alarms["345678"] = alarm;
+//        
+//        for(alarm in alarms){
+//            var x= alarms[alarm];
+//        };
+//        
+//        obj = JSON.parse(data);
+ 
         NativeStorage.set("dummy_ref_obj",
             data,
             function (result) {

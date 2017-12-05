@@ -50,9 +50,29 @@
                         <p class="event listening"></p>
                         <p class="event received"></p>
                     </div>
-                    <div>
-                        <p id="alarmTime">??</p>
+                    
+                    <div data-toggle="buttons">
+                       <input type="time" id="data_input"><br>
+                        <label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off"> Alarme 1 
+                            
+                        </label>
                     </div>
+                    
+                    <div data-toggle="buttons">
+                        <label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off"> Alarme 2
+                            <input type="time" id="data_input"><br>
+                        </label>
+                    </div>
+                    
+                    <div data-toggle="buttons">
+                        <label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off"> Alarme 3 
+                            <input type="time" id="data_input"><br>
+                        </label>
+                    </div>
+                    
                     <!--
                     <div>
                         <input type="time" id="data_input"><br><button id="btn_save">SAVE</button>
@@ -79,9 +99,11 @@
                     <div class="modal-body">
                         Nouvelle alarme
                         <div>
-                            
+                            <label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off"> Alarme 1 
                             <input type="time" id="data_input"><br>
-                            <input type="text" id="data_text">
+                            </label>
+                            <!--<input type="text" id="data_text">-->
                             <!--<button id="btn_load">LOAD</button><br>-->
                         </div>
                     </div>

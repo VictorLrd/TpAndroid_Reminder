@@ -42,8 +42,7 @@ var app = {
         var d = new Date();
         var heureActuelle = app.formatDigit(d.getHours()) + ':' + app.formatDigit(d.getMinutes());
         console.log(heureAlarm + '     ' + heureActuelle);
-      
-        for ()
+
         return (heureAlarm == heureActuelle)
     },
 
@@ -137,34 +136,34 @@ var app = {
     saveData: function (ref) {
         var time = $("#data_input").value;
         var text = $("#data_text").value;
-        data = JSON.stringify(this.jsonAlarm);
-        
-        var alarms =
-        {
-            id:"12345678": 
-            {
-                "title":title,
-                "date", ""
-            },
-            id:"987897": 
-            {
-                "title":title,
-                "date", ""
-            }
-        };
-        
-        var alarm =  {
-                "title":text,
-                "time":time
-            };
-        
-        alarms["345678"] = alarm;
-        
-        for(alarm in alarms){
-            var x= alarms[alarm];
-        };
-        
-        obj = JSON.parse(data);
+//        data = JSON.stringify(this.jsonAlarm);
+//        
+////        var alarms =
+////        {
+////            id:"12345678": 
+////            {
+////                "title":title,
+////                "date", ""
+////            },
+////            id:"987897": 
+////            {
+////                "title":title,
+////                "date", ""
+////            }
+////        };
+//
+//        var alarm =  {
+//                "title":text,
+//                "time":time
+//            };
+//        
+//        alarms["345678"] = alarm;
+//        
+//        for(alarm in alarms){
+//            var x= alarms[alarm];
+//        };
+//        
+//        obj = JSON.parse(data);
  
         NativeStorage.set("dummy_ref_obj",
             data,
