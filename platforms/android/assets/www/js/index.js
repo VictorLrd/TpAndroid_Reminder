@@ -83,6 +83,10 @@ var app = {
     ]
                     // foreground: true
                 });
+                cordova.plugins.notification.local.schedule({
+                    text: "Single Notification",
+                    sound:'happy',
+                });
             }
         }
         app.TimeOut();
