@@ -53,7 +53,7 @@
                     <div>
                         <p id="alarmTime">??</p>
                     </div>
-<!--
+                    <!--
                     <div>
                         <input type="time" id="data_input"><br><button id="btn_save">SAVE</button>
                         <button id="btn_load">LOAD</button><br>
@@ -67,7 +67,7 @@
         <button id="btn_New_Reminder" type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#ModalNewReminder">New Reminder</button>
 
         <!-- Modal -->
-        <div class="modal fade" id="ModalNewReminder" tabindex="-1" role="dialog" aria-labelledby="ModalNewReminder" aria-hidden="true">
+        <div class="modal fade" id="ModalNewReminder" tabindex="-1" role="dialog" aria-labelledby="ModalNewReminder" aria-hidden="true" style="margin-top:50%;">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -79,8 +79,10 @@
                     <div class="modal-body">
                         Nouvelle alarme
                         <div>
+                            
                             <input type="time" id="data_input"><br>
-                            <button id="btn_load">LOAD</button><br>
+                            <input type="text" id="data_text">
+                            <!--<button id="btn_load">LOAD</button><br>-->
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -90,9 +92,9 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Modal -->
-        <div class="modal fade" id="ModalAlarm" tabindex="-1" role="dialog" aria-labelledby="ModalAlarm" aria-hidden="true">
+        <div class="modal fade" id="ModalAlarm" tabindex="-1" role="dialog" aria-labelledby="ModalAlarm" aria-hidden="true" style="margin-top:50%;">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-footer">
@@ -101,7 +103,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
