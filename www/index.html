@@ -45,48 +45,46 @@
         <div class="row">
             <div class="col-12">
                 <div class="hero">
-                    <h1 id="cpt">Vos alarmes</h1>
-                    <div id="deviceready" class="blink">
-                        <p class="event listening"></p>
-                        <p class="event received"></p>
-                    </div>
-                    
-                    <div data-toggle="buttons">
-                       <input type="time" id="data_input"><br>
-                        <label class="btn btn-primary">
-                            <input type="checkbox" autocomplete="off"> Alarme 1 
-                            
+                    <center>
+                       
+                        <h1 id="cpt">Vos alarmes</h1>
+                        
+                        <div id="deviceready" class="blink">
+                            <p class="event listening"></p>
+                            <p class="event received"></p>
+                        </div>
+
+                        <label class="custom-control custom-checkbox ">
+                            <input type="checkbox" class="custom-control-input" id="checkAlarm0">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description"> Alarme 1 </span>
+                            <input style="margin-left:10px;" class="alarm"  type="time" id="data_input0">
                         </label>
-                    </div>
-                    
-                    <div data-toggle="buttons">
-                        <label class="btn btn-primary">
-                            <input type="checkbox" autocomplete="off"> Alarme 2
-                            <input type="time" id="data_input"><br>
+
+
+                        <label class="custom-control custom-checkbox ">
+                            <input type="checkbox" class="custom-control-input" id="checkAlarm1">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description"> Alarme 2 </span>
+                            <input style="margin-left:10px;" class="alarm" type="time" id="data_input1">
                         </label>
-                    </div>
-                    
-                    <div data-toggle="buttons">
-                        <label class="btn btn-primary">
-                            <input type="checkbox" autocomplete="off"> Alarme 3 
-                            <input type="time" id="data_input"><br>
+
+                        <label class="custom-control custom-checkbox ">
+                            <input type="checkbox" class="custom-control-input" id="checkAlarm2">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description"> Alarme 3 </span>
+                            <input style="margin-left:10px;" class="alarm" type="time" id="data_input2">
                         </label>
-                    </div>
-                    
-                    <!--
-                    <div>
-                        <input type="time" id="data_input"><br><button id="btn_save">SAVE</button>
-                        <button id="btn_load">LOAD</button><br>
-                    </div>
--->
+                        
+                    </center>
 
                 </div>
             </div>
         </div>
 
-        <button id="btn_New_Reminder" type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#ModalNewReminder">New Reminder</button>
+<!--<button id="btn_New_Reminder" type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#ModalNewReminder">New Reminder</button>-->
 
-        <!-- Modal -->
+        <!-- Modal
         <div class="modal fade" id="ModalNewReminder" tabindex="-1" role="dialog" aria-labelledby="ModalNewReminder" aria-hidden="true" style="margin-top:50%;">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -103,8 +101,6 @@
                             <input type="checkbox" autocomplete="off"> Alarme 1 
                             <input type="time" id="data_input"><br>
                             </label>
-                            <!--<input type="text" id="data_text">-->
-                            <!--<button id="btn_load">LOAD</button><br>-->
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -113,7 +109,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Modal -->
         <div class="modal fade" id="ModalAlarm" tabindex="-1" role="dialog" aria-labelledby="ModalAlarm" aria-hidden="true" style="margin-top:50%;">
