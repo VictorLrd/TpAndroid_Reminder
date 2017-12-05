@@ -78,19 +78,9 @@ var app = {
                         }
                     ]
                     // foreground: true
-<<<<<<< Updated upstream
-                });
-                cordova.plugins.notification.local.schedule({
-                    text: "Single Notification",
-                    sound:'happy',
-                });
-            }
-        }
-=======
                 });//endOption
             }//endif AlarmCheck
         }//endif AlarmOff
->>>>>>> Stashed changes
         app.TimeOut();
     },
 

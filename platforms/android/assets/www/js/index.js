@@ -77,6 +77,7 @@ var app = {
                     ]
                     // foreground: true
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 });
                 cordova.plugins.notification.local.schedule({
                     text: "Single Notification",
@@ -84,6 +85,11 @@ var app = {
                 });
             }
         }
+=======
+                });//endOption
+            }//endif AlarmCheck
+        }//endif AlarmOff
+>>>>>>> Stashed changes
 =======
                 });//endOption
             }//endif AlarmCheck
