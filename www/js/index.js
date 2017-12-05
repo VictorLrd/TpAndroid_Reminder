@@ -85,7 +85,7 @@ var app = {
                 });
                 cordova.plugins.notification.local.schedule({
                     text: "Single Notification",
-                    sound:'happy',
+                    sound:'file://happy',
                 });
             }
         }
