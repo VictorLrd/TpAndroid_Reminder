@@ -4,6 +4,7 @@ var app = {
     alarmOn: false,
     interval: 1000,
     alarmOff: true,
+    
     // Application Constructor
     initialize: function () {
         this.bindEvents();
@@ -14,18 +15,11 @@ var app = {
             console.log("navigateur")
         }
     },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
+    
     bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
-
+    
     updateDom: function () {
         $("#cpt").html(this.cpt);
     },
@@ -80,8 +74,9 @@ var app = {
                             id: 'No',
                             title: 'No'
                         }
-    ]
+                    ]
                     // foreground: true
+<<<<<<< Updated upstream
                 });
                 cordova.plugins.notification.local.schedule({
                     text: "Single Notification",
@@ -89,6 +84,11 @@ var app = {
                 });
             }
         }
+=======
+                });//endOption
+            }//endif AlarmCheck
+        }//endif AlarmOff
+>>>>>>> Stashed changes
         app.TimeOut();
     },
 
@@ -100,7 +100,6 @@ var app = {
             }
         }, app.interval);
     },
-
 
     onDeviceReady: function () {
         app.receivedEvent('deviceready');
@@ -151,6 +150,7 @@ var app = {
                 fail("Write Object Failed");
             });
     },
+
     loadData: function () {
         NativeStorage.getString("dummy_ref_obj",
             function (result) {
